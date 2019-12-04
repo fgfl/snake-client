@@ -14,4 +14,4 @@ const serverPort = 50541;
 
 console.log('Connecting ....');
 const client = connect(serverIP, serverPort);
-const userIO = setupInput();
+const userIO = setupInput(client);

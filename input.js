@@ -2,21 +2,34 @@
  * Dec 4, 2019
  * Frederick Lee
  */
+// stores the active TCP connection object.
+ let connection;
+/**
+ * "Move: up" - move up one square (unless facing down)
+ * "Move: down" - move down one square (unless facing up)
+ * "Move: left" - move left one square (unless facing right)
+ * "Move: right" - move left one square (unless facing left)
+ */
+const cmmds = {
+  w: "Move: up",
+  d: "Move: right",
+  s: "Move: down",
+  a: "Move: left",
+};
 
 /**
  * Setup User Interface
  * Specifically, so that we can handle user input via stdin
  */
-const cmmds = {
-  up: "Move: up"
-};
-
 const handleUserInput = key => {
   if (key === '\u0003')
     process.exit();
+  connection.write(cmmds[key]);
 };
 
-const setupInput = () => {
+const setupInput = (conn) => {
+  connection = conn;
+
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding('utf8');

@@ -9,12 +9,12 @@ const onConnect = (conn) => {
   console.log('Successfully connected to the game server');
   const name = 'FFL'
   conn.write(`Name: ${name}`);
-  const moveInterval = setInterval(() => {
-    conn.write('Move: up');
-  }, 50);
-  setTimeout(() => {
-    clearInterval(moveInterval);
-  }, 500);
+  // const moveInterval = setInterval(() => {
+  //   conn.write('Move: up');
+  // }, 50);
+  // setTimeout(() => {
+  //   clearInterval(moveInterval);
+  // }, 500);
 };
 
 const connect = (ip, port) => {

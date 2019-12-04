@@ -2,7 +2,7 @@
   Frderick Lee
 */
 
-const net = require('net');
+const {connect} = require('./client');
 
 /**
  * Establishes connection with the game server
@@ -10,21 +10,11 @@ const net = require('net');
 
 const serverIP = '192.168.88.149';
 const serverPort = 50541;
+const name = 'FFL';
 
-const connect = () => {
-  const conn = net.createConnection({
-    host: serverIP,
-    port: serverPort
-  });
-
-  conn.setEncoding('utf8');
-  conn.on('data', data => {
-    if (data === 'you ded cuz you idled\n') 
-      console.log(data);
-  });
-
-  return conn;
-};
+const cmmds = {
+  up: "Move: up"
+}
 
 console.log('Connecting ....');
-const client = connect();
+const client = connect(serverIP, serverPort);

@@ -15,6 +15,10 @@ const cmmds = {
   d: "Move: right",
   s: "Move: down",
   a: "Move: left",
+  y: "Say: Sup",
+  u: "Say: Lets GOOO!",
+  h: "Say: GG",
+  i: "Say: Gobble gobble", 
 };
 
 /**
@@ -24,7 +28,9 @@ const cmmds = {
 const handleUserInput = key => {
   if (key === '\u0003')
     process.exit();
-  connection.write(cmmds[key]);
+  if (cmmds[key]) {
+    connection.write(cmmds[key]);
+  }
 };
 
 const setupInput = (conn) => {

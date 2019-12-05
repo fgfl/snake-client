@@ -4,17 +4,11 @@
  */
 
 const net = require('net');
+const {NAME, SUCCESS_CONNECT_MSG, SERVER_IDLE_MSG} = require('./constants');
 
 const onConnect = (conn) => {
-  console.log('Successfully connected to the game server');
-  const name = 'FFL'
-  conn.write(`Name: ${name}`);
-  // const moveInterval = setInterval(() => {
-  //   conn.write('Move: up');
-  // }, 50);
-  // setTimeout(() => {
-  //   clearInterval(moveInterval);
-  // }, 500);
+  console.log(SUCCESS_CONNECT_MSG);
+  conn.write(`Name: ${NAME}`);
 };
 
 const connect = (ip, port) => {
@@ -27,7 +21,7 @@ const connect = (ip, port) => {
 
   conn.on('connect',() => onConnect(conn));
   conn.on('data', data => {
-    if (data === 'you ded cuz you idled\n') 
+    if (data === SERVER_IDLE_MSG) 
       console.log(data);
   });
 
